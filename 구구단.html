@@ -12,12 +12,12 @@
         var 숫자1 = Math.floor(Math.random() * 9 ) + 1;
         var 숫자2 = Math.floor(Math.random() * 9 ) + 1;
         var 결과 = 숫자1 * 숫자2;
-        var 조건 = true;
+        var 조건 = true; //정답인지 아닌지 체크하는 변수
         while(조건){
             var 답 = prompt(String(숫자1) + '곱하기' + String(숫자2) + '는?');
             if(결과 === Number(답)){
                 alert('딩동댕');
-                조건 = false;
+                조건 = false; //정답을 맞추면 while문 종료
             }else{
                 alert('땡');
             }
