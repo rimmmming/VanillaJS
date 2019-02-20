@@ -8,6 +8,43 @@
 </head>
 <body>
 <script>
+    var num1 = Math.ceil(Math.random() * 9 ) + 1;
+    var num2 = Math.ceil(Math.random() * 9 ) + 1;
+    var result = num1 * num2;
+
+    var body = document.body;
+    var word = document.createElement('div');
+    word.textContent = String(num1) + '곱하기' + String(num2) + '는?'; 
+    body.append(word);
+    var form = document.createElement('form');
+    body.append(form);
+    var input = document.createElement('input');
+    form.append(input);
+    var button = document.createElement('button');
+    button.textContent = '입력';
+    form.append(button);
+    var answer = document.createElement('div');
+    body.append(answer);
+
+    form.addEventListener('submit', function(e){
+        e.preventDefault();
+        if(result === Number(input.value) ){
+            //맞았을때
+            answer.textContent = '딩동댕'
+            num1 = Math.ceil(Math.random() * 9 ) + 1;
+            num2 = Math.ceil(Math.random() * 9 ) + 1;
+            result = num1 * num2;
+            word.textContent = String(num1) + '곱하기' + String(num2) + '는?'; 
+            input.value = "";
+            input.focus();
+        }else{
+            //틀렸을때
+            answer.textContent = '땡';
+            input.value = "";
+            input.focus();
+        }
+    });
+/*
     while(true){
         var 숫자1 = Math.floor(Math.random() * 9 ) + 1;
         var 숫자2 = Math.floor(Math.random() * 9 ) + 1;
@@ -23,6 +60,7 @@
             }
         }
     }
+*/
 </script>
 </body>
 </html>
