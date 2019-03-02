@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>별찍기</title>
+</head>
+<body>
+<script>
+for(var star = 1; star <= 5; star += 1){ //1 2 3 4 5
+    console.log('*'.repeat(star))
+}
+
+for(var star = 5; star >= 1; star -= 1){ //5 4 3 2 1
+    console.log('*'.repeat(star))
+}
+
+for(var star = 10; star >= 2; star -= 2){ //10 8 6 4 2
+    console.log('*'.repeat(star))
+}
+
+for(var star = 1; star <= 16; star *= 2){ //1 2 4 8 16
+    console.log('*'.repeat(star))
+}
+
+for(var star = 5; star >= 1; star -= 1){
+    console.log(' '.repeat(5-star) +  '*'.repeat(star))
+}
+
+for(var star = 9; star >= 1; star -= 2){
+    console.log(' '.repeat( (9-star) / 2 ) +  '*'.repeat(star))
+}
+
+for(var star =-6; star <=7; star+=2){
+    console.log(Math.abs(star))
+	console.log(' '.repeat(Math.abs(star) / 2)+'*'.repeat(7-Math.abs(star)))
+}
+</script>
+</body>
+</html>
