@@ -7,27 +7,68 @@
     <title>숫자야구 게임</title>
 </head>
 <body>
+    <h1 id="qiuz">숫자야구 게임</h1>
+    <form id="form">
+        <input id="input" maxlength="4" type="text"/>
+        <button type="button">입력</button>
+    </form>
+    <div id="answer"></div>
 <script>
-    var body = document.body;
-    var word = document.createElement('div');
-    var form = document.createElement('form');
-    body.append(form);
-    var input = document.createElement('input');
-    form.append(input);
-    var button = document.createElement('button');
-    button.textContent = '입력';
-    form.append(button);
 
-    var 숫자후보 = [1,2,3,4,5,6,7,8,9];
-    var 숫자배열 = [];
-    for(var i=0; i<숫자후보.length - 1; i++){
-        var 뽑은것 = 숫자후보.splice(Math.floor(Math.random() * (9 - i)), 1)[0];
-        숫자배열.push(뽑은것)
+    var qiuz = document.getElementById('qiuz');
+    var form = document.getElementById('form');
+    var input = document.getElementById('input');
+    var button = document.getElementById('button');
+    var answer = document.getElementById('answer');
+    var 숫자후보;
+    var 숫자배열;
+
+    function 숫자뽑기(){
+        숫자후보 = [1,2,3,4,5,6,7,8,9];
+        숫자배열 = [];
+        for(var i=0; i<숫자후보.length - 1; i++){
+            var 뽑은것 = 숫자후보.splice(Math.floor(Math.random() * (9 - i)), 1)[0];
+            숫자배열.push(뽑은것)
+            //숫자배열.push(String(뽑은것))
+        }
     }
-    //console.log(숫자후보, 숫자배열)
+    숫자뽑기();
+    console.log(숫자배열)
+    var 틀린횟수 = 0;
 
     form.addEventListener('submit', function(e){
-        input.value
+        e.preventDefault();
+        var 답 = input.value;
+        if(답 === 숫자배열.join('')){ //숫자배열을 하나로 묶어서 답체크함
+            qiuz.textContent = " 정답!! ";
+            숫자뽑기();
+            input.value = '';
+            input.focus();
+            틀린횟수 = 0;
+            console.log(숫자배열)
+        }else{
+            var 답배열 = 답.split(''); //문자열을 배열로 만들어 비교함 (문자열로 생성되므로 밑에서 Number를 붙여주었음)
+            var 스트라이크 = 0;
+            var 볼 = 0;
+            
+            if(틀린횟수 > 3){
+                qiuz.textContent = " 실패!!! 정답은 " + 숫자배열 + ' 입니다. ';
+                숫자뽑기();
+                input.value = '';
+                input.focus();
+            }else{
+                for(var j = 0; j <= 숫자배열.length; j += 1){
+                    if( Number(답배열[j]) === 숫자배열[j] ){
+                        스트라이크 += 1
+                    }else if( 숫자배열.indexOf( Number(답배열[j]) ) > -1 ){
+                        볼 += 1
+                    }
+                }
+                틀린횟수 += 1;
+                qiuz.textContent = 스트라이크 + " 스트라이크 " + 볼 + ' 볼 ';
+            }
+            
+        }
     })
 </script>
 </body>
