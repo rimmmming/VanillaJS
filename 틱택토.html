@@ -37,7 +37,7 @@ var 비동기콜백 = function(이벤트){
 for(var i = 1; i <= 3; i += 1){
     var 줄 = document.createElement('tr');
     줄들.push(줄);
-    칸들.push([]);
+    칸들.push([]); //html과 동일한 배열 생성하여 접근 
     for(var j = 1; j <= 3; j += 1){
         var 칸 = document.createElement('td');
         칸.addEventListener('click', 비동기콜백);
